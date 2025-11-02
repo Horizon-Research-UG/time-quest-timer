@@ -12,8 +12,17 @@
 <body>
     <!-- Main container for timer display -->
     <div class="timer-container">
-        <!-- Input for custom minutes, connects to startTimer() in script.js line 7 -->
-        <input type="number" id="minutesInput" value="5" min="1" max="60" placeholder="Minuten">
+        <!-- Time input section for custom time selection -->
+        <div class="time-input-section">
+            <label>Zeit auswählen:</label>
+            <div class="time-inputs">
+                <!-- Minutes input, connects to startTimer() in script.js line 8 -->
+                <input type="number" id="minutesInput" value="5" min="0" max="59" placeholder="Min">
+                <span class="time-separator">:</span>
+                <!-- Seconds input, connects to startTimer() in script.js line 10 -->
+                <input type="number" id="secondsInput" value="0" min="0" max="59" placeholder="Sek">
+            </div>
+        </div>
         
         <!-- Display mode selection, connects to changeDisplayMode() in script.js line 55 -->
         <div class="mode-selector">

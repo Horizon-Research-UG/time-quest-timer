@@ -13,18 +13,54 @@
     margin: 0 auto;
 }
 
-/* Input field styling for minutes */
-#minutesInput {
-    /* Large input for easy use, connects to startTimer() script.js line 8 */
-    font-size: 1.5em;
-    padding: 10px;
+/* Time input section styling */
+.time-input-section {
+    /* Center time inputs horizontally */
+    text-align: center;
+    /* Space below inputs, separates from mode selector */
+    margin-bottom: 20px;
+}
+
+/* Time input section label */
+.time-input-section label {
+    /* Display label above inputs */
+    display: block;
+    font-weight: bold;
+    /* Space below label */
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Time inputs container */
+.time-inputs {
+    /* Center inputs horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Space between inputs and separator */
+    gap: 10px;
+}
+
+/* Individual time input styling */
+#minutesInput, #secondsInput {
+    /* Medium input for easy use, connects to startTimer() script.js line 9,11 */
+    font-size: 1.3em;
+    padding: 8px;
     /* Center text in input field */
     text-align: center;
-    /* Space below input, separates from mode selector */
-    margin-bottom: 20px;
+    /* Fixed width for consistent layout */
+    width: 60px;
     /* Border styling for visibility */
     border: 2px solid #ddd;
     border-radius: 5px;
+}
+
+/* Time separator styling */
+.time-separator {
+    /* Large colon between inputs */
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
 }
 
 /* Mode selector styling for display options */

@@ -1,20 +1,43 @@
 // Timer variables for countdown functionality
-let timeLeft = 300; // Default 5 minutes in seconds, used in updateDisplay() line 33
-let timerInterval = null; // Stores interval ID, cleared in stopTimer() line 64
-let totalTime = 300; // Total timer duration, used for progress calculation line 38
-let displayMode = 'text'; // Current display mode, changed in changeDisplayMode() line 55
+let timeLeft = 300; // Default 5 minutes in seconds, used in updateDisplay() line 52
+let timerInterval = null; // Stores interval ID, cleared in stopTimer() line 86
+let totalTime = 300; // Total timer duration, used for progress calculation line 57
+let displayMode = 'text'; // Current display mode, changed in changeDisplayMode() line 77
 
-// Start countdown timer with custom minutes
+// Validate time inputs to ensure correct values
+function validateInputs() {
+    // Get minutes input element, connects to HTML input line 15
+    let minutesEl = document.getElementById('minutesInput');
+    // Get seconds input element, connects to HTML input line 17
+    let secondsEl = document.getElementById('secondsInput');
+    // Ensure minutes are between 0-59
+    if (minutesEl.value > 59) minutesEl.value = 59;
+    if (minutesEl.value < 0) minutesEl.value = 0;
+    // Ensure seconds are between 0-59
+    if (secondsEl.value > 59) secondsEl.value = 59;
+    if (secondsEl.value < 0) secondsEl.value = 0;
+}
+
+// Start countdown timer with custom time
 function startTimer() {
+    // Validate inputs first, calls validateInputs() line 6
+    validateInputs();
     // Stop any existing timer first, prevents multiple timers
     clearInterval(timerInterval);
-    // Get minutes from input field, connects to HTML input line 13
-    let minutes = parseInt(document.getElementById('minutesInput').value) || 5;
-    // Convert minutes to seconds, used in countdown() line 28
-    timeLeft = minutes * 60;
-    // Store total time for progress calculation, used in updateDisplay() line 38
+    // Get minutes from input field, connects to HTML input line 15
+    let minutes = parseInt(document.getElementById('minutesInput').value) || 0;
+    // Get seconds from input field, connects to HTML input line 17
+    let seconds = parseInt(document.getElementById('secondsInput').value) || 0;
+    // Check if any time is set, prevent starting with 0:00
+    if (minutes === 0 && seconds === 0) {
+        alert('Bitte eine Zeit größer als 0:00 eingeben!');
+        return;
+    }
+    // Convert to total seconds, used in countdown() line 42
+    timeLeft = (minutes * 60) + seconds;
+    // Store total time for progress calculation, used in updateDisplay() line 52
     totalTime = timeLeft;
-    // Start countdown every second, calls countdown() line 28
+    // Start countdown every second, calls countdown() line 42
     timerInterval = setInterval(countdown, 1000);
 }
 
@@ -88,13 +111,15 @@ function stopTimer() {
     clearInterval(timerInterval);
     // Clear timer reference to prevent conflicts
     timerInterval = null;
-    // Get current input value for reset, connects to HTML input line 13
-    let minutes = parseInt(document.getElementById('minutesInput').value) || 5;
-    // Reset timer to input value, connects to timeLeft line 2
-    timeLeft = minutes * 60;
+    // Get current minutes value for reset, connects to HTML input line 15
+    let minutes = parseInt(document.getElementById('minutesInput').value) || 0;
+    // Get current seconds value for reset, connects to HTML input line 17
+    let seconds = parseInt(document.getElementById('secondsInput').value) || 0;
+    // Reset timer to input values, connects to timeLeft line 2
+    timeLeft = (minutes * 60) + seconds;
     // Reset total time for progress calculation
     totalTime = timeLeft;
-    // Update display to show reset time, calls updateDisplay() line 33
+    // Update display to show reset time, calls updateDisplay() line 35
     updateDisplay();
 }
 
@@ -106,9 +131,14 @@ window.onload = function() {
     let circumference = 2 * Math.PI * 90;
     document.getElementById('circleProgress').style.strokeDasharray = circumference;
     document.getElementById('circleProgress').style.strokeDashoffset = circumference;
-    // Update display when input changes, connects to HTML input line 13
+    // Update display when minutes input changes, connects to HTML input line 15
     document.getElementById('minutesInput').addEventListener('input', function() {
-        // Update timer when input changes, calls stopTimer() line 64
+        // Update timer when input changes, calls stopTimer() line 74
+        if (!timerInterval) stopTimer();
+    });
+    // Update display when seconds input changes, connects to HTML input line 17
+    document.getElementById('secondsInput').addEventListener('input', function() {
+        // Update timer when input changes, calls stopTimer() line 74
         if (!timerInterval) stopTimer();
     });
 }
