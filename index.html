@@ -12,11 +12,13 @@
 <body>
     <!-- Main container for timer display -->
     <div class="timer-container">
-        <!-- Shows remaining time, connects to updateDisplay() in script.js line 15 -->
+        <!-- Input for custom minutes, connects to startTimer() in script.js line 6 -->
+        <input type="number" id="minutesInput" value="5" min="1" max="60" placeholder="Minuten">
+        <!-- Shows remaining time, connects to updateDisplay() in script.js line 17 -->
         <div id="display">05:00</div>
-        <!-- Start button, triggers startTimer() in script.js line 8 -->
+        <!-- Start button, triggers startTimer() in script.js line 6 -->
         <button id="startBtn" onclick="startTimer()">Timer Starten</button>
-        <!-- Stop button, triggers stopTimer() in script.js line 22 -->
+        <!-- Stop button, triggers stopTimer() in script.js line 30 -->
         <button id="stopBtn" onclick="stopTimer()">Timer Stoppen</button>
     </div>
     <!-- Include JavaScript functionality -->

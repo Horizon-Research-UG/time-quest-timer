@@ -4,21 +4,38 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Add spacing around timer, affects display and buttons line 11-14 */
-    padding: 50px;
-    /* Set background color for container visibility */
-    background-color: #f0f0f0;
+    /* Add spacing around timer, affects all elements line 11-16 */
+    padding: 20px;
+    /* Light background for Obsidian compatibility */
+    background-color: #f9f9f9;
+    /* Compact design for embedding in Excalidraw */
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Input field styling for minutes */
+#minutesInput {
+    /* Large input for easy use, connects to startTimer() script.js line 6 */
+    font-size: 1.5em;
+    padding: 10px;
+    /* Center text in input field */
+    text-align: center;
+    /* Space below input, separates from display line 20 */
+    margin-bottom: 20px;
+    /* Border styling for visibility */
+    border: 2px solid #ddd;
+    border-radius: 5px;
 }
 
 /* Timer display styling for visibility */
 #display {
-    /* Large font for easy reading, shows time from script.js line 18 */
-    font-size: 4em;
+    /* Large font for easy reading, shows time from script.js line 23 */
+    font-size: 3em;
     font-weight: bold;
     /* Dark color for good contrast with background line 7 */
     color: #333;
-    /* Space below display, separates from buttons line 13-14 */
-    margin-bottom: 30px;
+    /* Space below display, separates from buttons line 15-16 */
+    margin-bottom: 20px;
 }
 
 /* Button styling for user interaction */
