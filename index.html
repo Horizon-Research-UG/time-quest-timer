@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <!-- Meta tags for page setup -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title shown in browser tab -->
+    <title>5 Minuten Timer</title>
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main container for timer display -->
+    <div class="timer-container">
+        <!-- Shows remaining time, connects to updateDisplay() in script.js line 15 -->
+        <div id="display">05:00</div>
+        <!-- Start button, triggers startTimer() in script.js line 8 -->
+        <button id="startBtn" onclick="startTimer()">Timer Starten</button>
+        <!-- Stop button, triggers stopTimer() in script.js line 22 -->
+        <button id="stopBtn" onclick="stopTimer()">Timer Stoppen</button>
+    </div>
+    <!-- Include JavaScript functionality -->
+    <script src="script.js"></script>
+</body>
+</html>

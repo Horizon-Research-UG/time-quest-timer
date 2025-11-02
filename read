@@ -1,0 +1,25 @@
+how to code:
+
+x = 7
+
+---
+
+1. so wenig Zeilen wie möglich
+
+2. nur klar verständliche Zeilen werden verwendet
+
+3. alles ist maximal Mudular
+
+4. jede Funktion hat maximal x(siehe oben) Zeilen
+
+5. jede einzelnde Zeile ist Kommentiert
+
+6. Kommentare sind in selbsterklärenden easy Worts geschrieben
+
+7. Kommtentare erklären auch immer wofür die BezugsZeile Code
+relevant ist und gibt an in welchen Zeilen die 
+betroffenden GegenStücl Code Zeilen sind
+
+---
+
+8. nur maximal x(siehe oben) FunktiosDatein auf einmal

@@ -1,0 +1,52 @@
+# GitHub Pages deployment workflow
+name: Deploy to GitHub Pages
+
+# Trigger deployment on push to main branch
+on:
+  push:
+    # Deploy when main branch is updated, connects to repository main branch
+    branches: [ "main" ]
+  # Allow manual deployment from Actions tab
+  workflow_dispatch:
+
+# Set permissions for GitHub token
+permissions:
+  # Read repository contents, needed for checkout action line 19
+  contents: read
+  # Write to pages, needed for deployment action line 26
+  pages: write
+  # Write ID token, needed for authentication line 26
+  id-token: write
+
+# Deployment job configuration
+jobs:
+  deploy:
+    # Use GitHub Pages environment for deployment
+    environment:
+      # Environment name for deployment tracking
+      name: github-pages
+      # URL where site will be available after deployment
+      url: ${{ steps.deployment.outputs.page_url }}
+    # Use latest Ubuntu runner for deployment
+    runs-on: ubuntu-latest
+    steps:
+    # Download repository files for deployment
+    - name: Checkout
+      # Get all files from repository, provides files to deploy line 30
+      uses: actions/checkout@v4
+    # Configure GitHub Pages settings  
+    - name: Setup Pages
+      # Prepare Pages deployment, connects to deploy step line 35
+      uses: actions/configure-pages@v4
+    # Upload files to GitHub Pages
+    - name: Upload artifact
+      # Package files for deployment, uses repository files line 24
+      uses: actions/upload-pages-artifact@v3
+      with:
+        # Deploy all files from repository root
+        path: '.'
+    # Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      # Publish uploaded files, uses artifact from line 30
+      id: deployment
+      uses: actions/deploy-pages@v4
