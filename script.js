@@ -20,6 +20,8 @@ function validateInputs() {
 
 // Start countdown timer with custom time
 function startTimer() {
+    // Debug: Log that function was called
+    console.log('START TIMER BUTTON GEDRÜCKT!');
     // Validate inputs first, calls validateInputs() line 6
     validateInputs();
     // Stop any existing timer first, prevents multiple timers
@@ -28,33 +30,44 @@ function startTimer() {
     let minutes = parseInt(document.getElementById('minutesInput').value) || 0;
     // Get seconds from input field, connects to HTML input line 17
     let seconds = parseInt(document.getElementById('secondsInput').value) || 0;
+    // Debug: Show what time was entered
+    console.log('Eingegebene Zeit: ' + minutes + ':' + seconds);
     // Check if any time is set, prevent starting with 0:00
     if (minutes === 0 && seconds === 0) {
         alert('Bitte eine Zeit größer als 0:00 eingeben!');
         return;
     }
-    // Convert to total seconds, used in countdown() line 42
+    // Convert to total seconds, used in countdown() line 44
     timeLeft = (minutes * 60) + seconds;
-    // Store total time for progress calculation, used in updateDisplay() line 52
+    // Store total time for progress calculation, used in updateDisplay() line 54
     totalTime = timeLeft;
-    // Start countdown every second, calls countdown() line 42
+    // Debug: Confirm timer setup
+    console.log('Timer startet mit ' + timeLeft + ' Sekunden');
+    // Update display immediately before starting countdown
+    updateDisplay();
+    // Start countdown every second, calls countdown() line 44
     timerInterval = setInterval(countdown, 1000);
+    // Debug: Confirm interval was set
+    console.log('Interval gestartet, ID: ' + timerInterval);
 }
 
 // Count down one second and update display
 function countdown() {
+    // Debug: Confirm countdown function is called
+    console.log('COUNTDOWN FUNKTION AUFGERUFEN - Aktuelle Zeit: ' + timeLeft);
     // Reduce time by one second, connects to timeLeft line 2
     timeLeft--;
-    // Update display with new time, calls updateDisplay() line 18
+    // Update display with new time, calls updateDisplay() line 56
     updateDisplay();
     // Debug output to console to verify countdown works
-    console.log('Timer: ' + timeLeft + ' seconds remaining');
+    console.log('Timer läuft runter: ' + timeLeft + ' Sekunden übrig');
     // Check if timer finished, stops at zero
     if (timeLeft <= 0) {
-        // Stop timer when reaching zero, calls stopTimer() line 32
+        // Stop timer when reaching zero, calls stopTimer() line 90
         stopTimer();
         // Alert user that timer is finished
         alert('Timer beendet!');
+        console.log('TIMER BEENDET!');
     }
 }
 
@@ -123,9 +136,24 @@ function stopTimer() {
     updateDisplay();
 }
 
+// Debug function to test if timer is running
+function debugTimerStatus() {
+    // Check if timer is running every 2 seconds
+    setInterval(function() {
+        if (timerInterval) {
+            console.log('✅ TIMER LÄUFT - Verbleibende Zeit: ' + timeLeft + ' Sekunden');
+        } else {
+            console.log('❌ Timer ist gestoppt');
+        }
+    }, 2000);
+}
+
 // Initialize timer when page loads
 window.onload = function() {
-    // Set initial display, calls updateDisplay() line 33
+    // Start debug monitoring, shows timer status every 2 seconds
+    debugTimerStatus();
+    console.log('PAGE LOADED - Timer bereit');
+    // Set initial display, calls updateDisplay() line 56
     updateDisplay();
     // Initialize circle progress display, connects to HTML circleProgress line 32
     let circumference = 2 * Math.PI * 90;
@@ -133,12 +161,12 @@ window.onload = function() {
     document.getElementById('circleProgress').style.strokeDashoffset = circumference;
     // Update display when minutes input changes, connects to HTML input line 15
     document.getElementById('minutesInput').addEventListener('input', function() {
-        // Update timer when input changes, calls stopTimer() line 74
+        // Update timer when input changes, calls stopTimer() line 108
         if (!timerInterval) stopTimer();
     });
     // Update display when seconds input changes, connects to HTML input line 17
     document.getElementById('secondsInput').addEventListener('input', function() {
-        // Update timer when input changes, calls stopTimer() line 74
+        // Update timer when input changes, calls stopTimer() line 108
         if (!timerInterval) stopTimer();
     });
 }
