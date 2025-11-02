@@ -4,11 +4,13 @@ let timerInterval = null; // Stores interval ID, cleared in stopTimer() line 30
 
 // Start countdown timer with custom minutes
 function startTimer() {
+    // Stop any existing timer first, prevents multiple timers
+    clearInterval(timerInterval);
     // Get minutes from input field, connects to HTML input line 13
     let minutes = parseInt(document.getElementById('minutesInput').value) || 5;
-    // Convert minutes to seconds, used in countdown() line 25
+    // Convert minutes to seconds, used in countdown() line 26
     timeLeft = minutes * 60;
-    // Start countdown every second, calls countdown() line 25
+    // Start countdown every second, calls countdown() line 26
     timerInterval = setInterval(countdown, 1000);
 }
 
@@ -16,12 +18,16 @@ function startTimer() {
 function countdown() {
     // Reduce time by one second, connects to timeLeft line 2
     timeLeft--;
-    // Update display with new time, calls updateDisplay() line 17
+    // Update display with new time, calls updateDisplay() line 18
     updateDisplay();
+    // Debug output to console to verify countdown works
+    console.log('Timer: ' + timeLeft + ' seconds remaining');
     // Check if timer finished, stops at zero
     if (timeLeft <= 0) {
-        // Stop timer when reaching zero, calls stopTimer() line 30
+        // Stop timer when reaching zero, calls stopTimer() line 32
         stopTimer();
+        // Alert user that timer is finished
+        alert('Timer beendet!');
     }
 }
 
@@ -40,11 +46,13 @@ function updateDisplay() {
 function stopTimer() {
     // Stop the countdown interval, uses timerInterval from line 3
     clearInterval(timerInterval);
+    // Clear timer reference to prevent conflicts
+    timerInterval = null;
     // Get current input value for reset, connects to HTML input line 13
     let minutes = parseInt(document.getElementById('minutesInput').value) || 5;
     // Reset timer to input value, connects to timeLeft line 2
     timeLeft = minutes * 60;
-    // Update display to show reset time, calls updateDisplay() line 17
+    // Update display to show reset time, calls updateDisplay() line 18
     updateDisplay();
 }
 
