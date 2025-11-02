@@ -12,13 +12,40 @@
 <body>
     <!-- Main container for timer display -->
     <div class="timer-container">
-        <!-- Input for custom minutes, connects to startTimer() in script.js line 6 -->
+        <!-- Input for custom minutes, connects to startTimer() in script.js line 7 -->
         <input type="number" id="minutesInput" value="5" min="1" max="60" placeholder="Minuten">
-        <!-- Shows remaining time, connects to updateDisplay() in script.js line 17 -->
-        <div id="display">05:00</div>
-        <!-- Start button, triggers startTimer() in script.js line 6 -->
+        
+        <!-- Display mode selection, connects to changeDisplayMode() in script.js line 55 -->
+        <div class="mode-selector">
+            <button onclick="changeDisplayMode('text')" class="mode-btn active" id="textBtn">Zeit</button>
+            <button onclick="changeDisplayMode('bar')" class="mode-btn" id="barBtn">Balken</button>
+            <button onclick="changeDisplayMode('circle')" class="mode-btn" id="circleBtn">Kreis</button>
+        </div>
+
+        <!-- Text display mode, shows time format, connects to updateDisplay() script.js line 33 -->
+        <div id="textDisplay" class="display-mode">05:00</div>
+        
+        <!-- Progress bar display mode, connects to updateDisplay() script.js line 38 -->
+        <div id="barDisplay" class="display-mode hidden">
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+                <div id="barTime" class="bar-time">05:00</div>
+            </div>
+        </div>
+        
+        <!-- Circle display mode, connects to updateDisplay() script.js line 45 -->
+        <div id="circleDisplay" class="display-mode hidden">
+            <div class="circle-container">
+                <svg class="circle-svg" width="200" height="200">
+                    <circle cx="100" cy="100" r="90" class="circle-bg"></circle>
+                    <circle cx="100" cy="100" r="90" class="circle-progress" id="circleProgress"></circle>
+                </svg>
+                <div id="circleTime" class="circle-time">05:00</div>
+            </div>
+        </div>
+
+        <!-- Control buttons, trigger functions in script.js -->
         <button id="startBtn" onclick="startTimer()">Timer Starten</button>
-        <!-- Stop button, triggers stopTimer() in script.js line 30 -->
         <button id="stopBtn" onclick="stopTimer()">Timer Stoppen</button>
     </div>
     <!-- Include JavaScript functionality -->

@@ -15,27 +15,168 @@
 
 /* Input field styling for minutes */
 #minutesInput {
-    /* Large input for easy use, connects to startTimer() script.js line 6 */
+    /* Large input for easy use, connects to startTimer() script.js line 8 */
     font-size: 1.5em;
     padding: 10px;
     /* Center text in input field */
     text-align: center;
-    /* Space below input, separates from display line 20 */
+    /* Space below input, separates from mode selector */
     margin-bottom: 20px;
     /* Border styling for visibility */
     border: 2px solid #ddd;
     border-radius: 5px;
 }
 
-/* Timer display styling for visibility */
-#display {
-    /* Large font for easy reading, shows time from script.js line 23 */
-    font-size: 3em;
-    font-weight: bold;
-    /* Dark color for good contrast with background line 7 */
-    color: #333;
-    /* Space below display, separates from buttons line 15-16 */
+/* Mode selector styling for display options */
+.mode-selector {
+    /* Center mode buttons horizontally */
+    display: flex;
+    justify-content: center;
+    /* Space below selector, separates from display area */
     margin-bottom: 20px;
+    /* Space between individual buttons */
+    gap: 10px;
+}
+
+/* Mode button styling */
+.mode-btn {
+    /* Button padding for easy clicking, connects to HTML buttons line 16 */
+    padding: 8px 16px;
+    border: 2px solid #ddd;
+    /* Remove default styling and add custom */
+    background: white;
+    border-radius: 5px;
+    /* Pointer cursor shows clickable */
+    cursor: pointer;
+}
+
+/* Active mode button styling */
+.mode-btn.active {
+    /* Blue background for selected mode, shows current selection */
+    background: #007cba;
+    color: white;
+    /* Darker border for active state */
+    border-color: #005a87;
+}
+
+/* Common display mode styling */
+.display-mode {
+    /* Space below display area, separates from buttons */
+    margin-bottom: 30px;
+    /* Minimum height to prevent layout shifts */
+    min-height: 200px;
+    /* Center content in display area */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hide inactive display modes */
+.hidden {
+    /* Completely hide element, connects to changeDisplayMode() script.js line 55 */
+    display: none !important;
+}
+
+/* Text display styling */
+#textDisplay {
+    /* Large font for easy reading, shows time from script.js line 36 */
+    font-size: 4em;
+    font-weight: bold;
+    /* Dark color for good contrast */
+    color: #333;
+}
+
+/* Progress bar container styling */
+.progress-container {
+    /* Full width for progress bar, connects to HTML barDisplay line 21 */
+    width: 250px;
+    position: relative;
+}
+
+/* Progress bar background styling */
+.progress-container {
+    /* Gray background for progress track */
+    background: #e0e0e0;
+    height: 30px;
+    /* Rounded corners for modern look */
+    border-radius: 15px;
+    /* Relative position for text overlay */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Progress bar fill styling */
+.progress-bar {
+    /* Green fill color, width controlled by script.js line 40 */
+    background: #4CAF50;
+    height: 100%;
+    /* Smooth animation when width changes */
+    transition: width 0.3s ease;
+    /* Rounded corners to match container */
+    border-radius: 15px;
+}
+
+/* Progress bar time text styling */
+.bar-time {
+    /* Position text over progress bar, shows from script.js line 41 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Center text perfectly */
+    transform: translate(-50%, -50%);
+    /* Bold white text for visibility */
+    font-weight: bold;
+    color: white;
+    /* Text shadow for better readability */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+/* Circle container styling */
+.circle-container {
+    /* Relative position for text overlay, connects to HTML circleDisplay line 28 */
+    position: relative;
+    display: inline-block;
+}
+
+/* Circle SVG styling */
+.circle-svg {
+    /* Rotate to start progress from top */
+    transform: rotate(-90deg);
+}
+
+/* Circle background styling */
+.circle-bg {
+    /* Light gray background circle */
+    fill: none;
+    stroke: #e0e0e0;
+    /* Thick stroke for visibility */
+    stroke-width: 8;
+}
+
+/* Circle progress styling */
+.circle-progress {
+    /* Blue progress circle, animated by script.js line 45 */
+    fill: none;
+    stroke: #007cba;
+    stroke-width: 8;
+    /* Smooth animation for progress changes */
+    transition: stroke-dashoffset 0.3s ease;
+    /* Round line caps for modern look */
+    stroke-linecap: round;
+}
+
+/* Circle time text styling */
+.circle-time {
+    /* Position text in center of circle, shows from script.js line 46 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Center text perfectly */
+    transform: translate(-50%, -50%);
+    /* Large bold text for visibility */
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
 }
 
 /* Button styling for user interaction */
